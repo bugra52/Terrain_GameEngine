@@ -18,6 +18,19 @@ public class WeatherManager : MonoBehaviour
     public float autumnTime;
     public float winterTime;
 
+    [Header("Light Settings")]
+    public Light sunLight;
+    private float defaultLightIntensity;
+    public float summerLightIntensity;
+    public float autumnLightIntensity;
+    public float winterLightIntensity;
+
+    private Color defaultLightColor;
+    public Color summerColor;
+    public Color autumnColor;
+    public Color winterColor;
+
+
     public int currentYear;
 
     private void Start()
@@ -27,6 +40,9 @@ public class WeatherManager : MonoBehaviour
         this.currentYear = 1;
 
         this.seasonTime = this.springTime;
+
+        this.defaultLightColor = this.sunLight.color;
+        this.defaultLightIntensity = this.sunLight.intensity;
     }
 
     public void ChangeSeason(Season seasonType)
@@ -81,6 +97,9 @@ public class WeatherManager : MonoBehaviour
         {
             ChangeWeather(Weather.SUNNY);
 
+            LerpLightIntensity(this.sunLight, defaultLightIntensity);
+            LerpLightColor(this.sunLight, defaultLightColor);
+
             if(this.seasonTime <= 0f)
             {
                 ChangeSeason(Season.SUMMER);
@@ -90,6 +109,9 @@ public class WeatherManager : MonoBehaviour
         if (this.currentSeason == Season.SUMMER)
         {
             ChangeWeather(Weather.HOTSUN);
+
+            LerpLightIntensity(this.sunLight, summerLightIntensity);
+            LerpLightColor(this.sunLight, summerColor);
 
             if (this.seasonTime <= 0f)
             {
@@ -101,6 +123,9 @@ public class WeatherManager : MonoBehaviour
         {
             ChangeWeather(Weather.RAIN);
 
+            LerpLightIntensity(this.sunLight, autumnLightIntensity);
+            LerpLightColor(this.sunLight, autumnColor);
+
             if (this.seasonTime <= 0f)
             {
                 ChangeSeason(Season.WINTER);
@@ -111,12 +136,25 @@ public class WeatherManager : MonoBehaviour
         {
             ChangeWeather(Weather.SNOW);
 
+            LerpLightIntensity(this.sunLight, winterLightIntensity);
+            LerpLightColor(this.sunLight, winterColor);
+
             if (this.seasonTime <= 0f)
             {
                 ChangeSeason(Season.SPRING);
                 this.seasonTime = this.summerTime;
             }
         }
+    }
+
+    private void LerpLightColor (Light light, Color c)
+    {
+        light.color = Color.Lerp(light.color, c, 0.2f * Time.deltaTime);
+    }
+
+    private void LerpLightIntensity(Light light, float intensity)
+    {
+        light.intensity = Mathf.Lerp(light.intensity, intensity, 0.2f * Time.deltaTime);
     }
 
 

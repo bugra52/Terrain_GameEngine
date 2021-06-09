@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeatherManager : MonoBehaviour
 {
-    
+
     public enum Season { NONE, SPRING, SUMMER, AUTUMN, WINTER }
     public enum Weather { NONE, SUNNY, HOTSUN, RAIN, SNOW }
 
@@ -29,6 +29,7 @@ public class WeatherManager : MonoBehaviour
     public Color summerColor;
     public Color autumnColor;
     public Color winterColor;
+
 
     public int currentYear;
 
@@ -120,8 +121,6 @@ public class WeatherManager : MonoBehaviour
         }
         if (this.currentSeason == Season.AUTUMN)
         {
-            
-
             ChangeWeather(Weather.RAIN);
 
             LerpLightIntensity(this.sunLight, autumnLightIntensity);
@@ -135,7 +134,6 @@ public class WeatherManager : MonoBehaviour
         }
         if (this.currentSeason == Season.WINTER)
         {
-           
             ChangeWeather(Weather.SNOW);
 
             LerpLightIntensity(this.sunLight, winterLightIntensity);

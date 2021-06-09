@@ -9,9 +9,21 @@ public class Snow : MonoBehaviour
     public float snowCoverSpeed;
     float value = 0;
 
+    bool startSnowing = false;
+
+    private void Start()
+    {
+        Shader.SetGlobalFloat("_SnowLevel", 0f); ;
+    }
+
     private void Update()
     {
-        if (value < 1f)
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            startSnowing = true;
+        }
+
+        if (startSnowing && value < 1f)
         {
             Shader.SetGlobalFloat("_SnowLevel", value);
             value += Time.deltaTime * snowCoverSpeed;

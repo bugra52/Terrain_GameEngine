@@ -94,6 +94,7 @@ public class WeatherManager : MonoBehaviour
 
         if(this.currentSeason == Season.SPRING)
         {
+            
             ChangeWeather(Weather.SUNNY);
 
             LerpLightIntensity(this.sunLight, defaultLightIntensity);
@@ -115,14 +116,15 @@ public class WeatherManager : MonoBehaviour
             if (this.seasonTime <= 0f)
             {
                 ChangeSeason(Season.AUTUMN);
-                this.seasonTime = this.summerTime;
+                this.seasonTime = this.autumnTime;
             }
         }
         if (this.currentSeason == Season.AUTUMN)
         {
-            
 
+            GameObject.Find("Rain").gameObject.SetActive(true);
             ChangeWeather(Weather.RAIN);
+            
 
             LerpLightIntensity(this.sunLight, autumnLightIntensity);
             LerpLightColor(this.sunLight, autumnColor);
@@ -130,12 +132,12 @@ public class WeatherManager : MonoBehaviour
             if (this.seasonTime <= 0f)
             {
                 ChangeSeason(Season.WINTER);
-                this.seasonTime = this.summerTime;
+                this.seasonTime = this.winterTime;
             }
         }
         if (this.currentSeason == Season.WINTER)
         {
-           
+            
             ChangeWeather(Weather.SNOW);
 
             LerpLightIntensity(this.sunLight, winterLightIntensity);
@@ -144,7 +146,7 @@ public class WeatherManager : MonoBehaviour
             if (this.seasonTime <= 0f)
             {
                 ChangeSeason(Season.SPRING);
-                this.seasonTime = this.summerTime;
+                this.seasonTime = this.springTime;
             }
         }
     }

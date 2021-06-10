@@ -146,7 +146,7 @@ public class WeatherManager : MonoBehaviour
             }
         }
     }
-
+    
     private void LerpLightColor (Light light, Color c)
     {
         light.color = Color.Lerp(light.color, c, 0.2f * Time.deltaTime);

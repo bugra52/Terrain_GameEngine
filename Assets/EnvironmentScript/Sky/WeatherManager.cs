@@ -116,7 +116,7 @@ public class WeatherManager : MonoBehaviour
             if (this.seasonTime <= 0f)
             {
                 ChangeSeason(Season.AUTUMN);
-                this.seasonTime = this.autumnTime;
+                this.seasonTime = this.summerTime;
             }
         }
         if (this.currentSeason == Season.AUTUMN)
@@ -129,7 +129,7 @@ public class WeatherManager : MonoBehaviour
             if (this.seasonTime <= 0f)
             {
                 ChangeSeason(Season.WINTER);
-                this.seasonTime = this.winterTime;
+                this.seasonTime = this.summerTime;
             }
         }
         if (this.currentSeason == Season.WINTER)
@@ -142,11 +142,11 @@ public class WeatherManager : MonoBehaviour
             if (this.seasonTime <= 0f)
             {
                 ChangeSeason(Season.SPRING);
-                this.seasonTime = this.springTime;
+                this.seasonTime = this.summerTime;
             }
         }
     }
-    
+
     private void LerpLightColor (Light light, Color c)
     {
         light.color = Color.Lerp(light.color, c, 0.2f * Time.deltaTime);

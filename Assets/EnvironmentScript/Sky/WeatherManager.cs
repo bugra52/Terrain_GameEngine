@@ -33,6 +33,9 @@ public class WeatherManager : MonoBehaviour
 
     public int currentYear;
 
+    public GameObject snowing;
+    public GameObject rainObj;
+
     private void Start()
     {
         this.currentSeason = Season.SPRING;
@@ -43,6 +46,9 @@ public class WeatherManager : MonoBehaviour
 
         this.defaultLightColor = this.sunLight.color;
         this.defaultLightIntensity = this.sunLight.intensity;
+
+        snowing = GameObject.Find("Snowflake").GetComponent<GameObject>();
+        rainObj = GameObject.Find("RainPrefab").GetComponent<GameObject>();
     }
 
     public void ChangeSeason(Season seasonType)
@@ -95,6 +101,8 @@ public class WeatherManager : MonoBehaviour
 
         if(this.currentSeason == Season.SPRING)
         {
+            snowing.gameObject.SetActive(false);
+
             ChangeWeather(Weather.SUNNY);
 
             LerpLightIntensity(this.sunLight, defaultLightIntensity);
@@ -121,6 +129,8 @@ public class WeatherManager : MonoBehaviour
         }
         if (this.currentSeason == Season.AUTUMN)
         {
+            rainObj.gameObject.SetActive(true);
+
             ChangeWeather(Weather.RAIN);
 
             LerpLightIntensity(this.sunLight, autumnLightIntensity);
@@ -134,6 +144,9 @@ public class WeatherManager : MonoBehaviour
         }
         if (this.currentSeason == Season.WINTER)
         {
+            snowing.gameObject.SetActive(true);
+            rainObj.gameObject.SetActive(false);
+
             ChangeWeather(Weather.SNOW);
 
             LerpLightIntensity(this.sunLight, winterLightIntensity);

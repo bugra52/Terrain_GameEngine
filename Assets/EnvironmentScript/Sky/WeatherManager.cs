@@ -101,6 +101,7 @@ public class WeatherManager : MonoBehaviour
 
         if(this.currentSeason == Season.SPRING)
         {
+            rainObj.gameObject.SetActive(false);
             snowing.gameObject.SetActive(false);
 
             ChangeWeather(Weather.SUNNY);

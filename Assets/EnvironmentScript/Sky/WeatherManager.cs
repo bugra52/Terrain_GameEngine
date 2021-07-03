@@ -42,13 +42,14 @@ public class WeatherManager : MonoBehaviour
         this.currentWeather = Weather.SUNNY;
         this.currentYear = 1;
 
-        this.seasonTime = this.springTime;
+        this.seasonTime = 120;
 
         this.defaultLightColor = this.sunLight.color;
         this.defaultLightIntensity = this.sunLight.intensity;
 
         snowing = GameObject.Find("Snowflake").GetComponent<GameObject>();
         rainObj = GameObject.Find("RainPrefab").GetComponent<GameObject>();
+
     }
 
     public void ChangeSeason(Season seasonType)

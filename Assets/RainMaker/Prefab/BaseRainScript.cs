@@ -333,7 +333,7 @@ namespace DigitalRuby.RainMaker
             AudioSource.playOnAwake = true;
             AudioSource.volume = 0.0f;
             AudioSource.Stop();
-            TargetVolume = 0.2f;
+            TargetVolume = 0.01f;
         }
 
         public void Play(float targetVolume)

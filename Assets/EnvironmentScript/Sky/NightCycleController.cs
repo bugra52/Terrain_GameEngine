@@ -5,10 +5,10 @@ using UnityEngine;
 public class NightCycleController : MonoBehaviour
 {
     [Range(0, 24)]
-    public float timeOfDay2;
+    public float timeOfDay;
 
     public float orbitSpeed = 1.0f;
-    public Light moon;
+    public Light sun;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,17 +18,16 @@ public class NightCycleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeOfDay2 += Time.deltaTime * orbitSpeed;
-        if (timeOfDay2 > 24)
-            timeOfDay2 = 0;
+        timeOfDay += Time.deltaTime * orbitSpeed;
+        if (timeOfDay > 24)
+            timeOfDay = 0;
 
 
         UpdateTime();
 
-
-        if (timeOfDay2 <= 7f || timeOfDay2 >=17f)
+        if (timeOfDay >= 5f || timeOfDay <= 19f)
         {
-            moon.intensity = 0f;
+            sun.intensity = 0f;
         }
     }
 
@@ -39,9 +38,9 @@ public class NightCycleController : MonoBehaviour
 
     private void UpdateTime()
     {
-        float alpha = timeOfDay2 / 24.0f;
-        float moonRotation = Mathf.Lerp(-90, 270, alpha);
-        moon.transform.rotation = Quaternion.Euler(moonRotation, -150.0f, 0);
+        float alpha = timeOfDay / 24.0f;
+        float sunRotation = Mathf.Lerp(-90, 270, alpha);
+        sun.transform.rotation = Quaternion.Euler(sunRotation, -150.0f, 0);
     }
 
 }

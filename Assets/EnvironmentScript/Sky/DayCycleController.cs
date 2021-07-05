@@ -22,7 +22,13 @@ public class DayCycleController : MonoBehaviour
         if (timeOfDay > 24)
             timeOfDay = 0;
 
+
         UpdateTime();
+
+        if (timeOfDay <= 5f || timeOfDay >= 19f)
+        {
+            sun.intensity = 0f;
+        }
     }
 
     private void OnValidate()
